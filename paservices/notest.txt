@@ -1,0 +1,37 @@
+to create the maven project
+mvn archetype:generate -DgroupId=com.pythonarabia -DartifactId=paservices -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+
+adjusted the pom file > clean > validate
+
+
+== Postgres from Docker and connecting the microservice to ==
+create docker-compose.yml file and from the same path run the command
+docker compose up -d
+This will create pgadmin and postgres instance
+docker compose ps
+will show the instances status
+pgadmin             pgadmin             running             443/tcp, 0.0.0.0:5050->80/tcp
+postgres            postgres            running             0.0.0.0:5432->5432/tcp
+open pgadmin from the browser
+http://localhost:5050/browser/
+add new server
+Host postgres
+Now the two docker instances are up and the pgadmin see the postgres and control it
+add the data jpa and postgres driver dependancies  at the ms pom then reload
+=============
+
+
+== Fraud Application ==
+configure different port at resources application.yml
+
+Connect the customer microservice to the postgres
+some configuration need to be pasted at the application.yml of the micro service
+create new db from the same up and running docker file
+configure fraud application.yml DB section
+configure the pom file for jpa and postgre
+========================
+
+
+
+
+
