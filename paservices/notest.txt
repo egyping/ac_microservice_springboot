@@ -6,7 +6,7 @@ adjusted the pom file > clean > validate
 
 == Postgres from Docker and connecting the microservice to ==
 create docker-compose.yml file and from the same path run the command
-docker compose up -d
+>> docker compose up -d
 This will create pgadmin and postgres instance
 docker compose ps
 will show the instances status
