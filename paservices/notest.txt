@@ -33,5 +33,65 @@ configure the pom file for jpa and postgre
 
 
 
+== Eureka ==
+Now we have customer micro service and fraud micro service
+both need to talk to each others in such case classes are not shared since it is two seperate
+modules and the only interface available is the APIs url
+Eureka has two things
+client installed at each ms and server where all the clients register at, and from that
+server the ms get to know and reach each others
+>>Install
+copy the depenancy of the correct version from the website
+paste it at the main pom dependancy management section
+Eureka server setup
+create totally new module name it eureka-server
+at the new modile pom add the following dependancy
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+    </dependency>
+</dependencies>
+create new package com.pythonarabia.eurekaserver
+create applicaiton class and configure it
+annotate the application class by @EnableEurekaServer
+add application.yml
+at yml the fetch and register are false as this is the server itself
+check the dashboard
+http://127.0.0.1:8761/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
