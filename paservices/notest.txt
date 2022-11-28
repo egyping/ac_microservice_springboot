@@ -32,6 +32,10 @@ configure the pom file for jpa and postgre
 ========================
 
 
+== Rest Template section ==
+Rest template used at customer to call fraud service by its url and path the customer ID
+
+
 
 == Eureka ==
 Now we have customer micro service and fraud micro service
@@ -59,6 +63,12 @@ add application.yml
 at yml the fetch and register are false as this is the server itself
 check the dashboard
 http://127.0.0.1:8761/
+at the customer and fraud services paste the client dependancy of eureka and reload
+at the customer and fraud application classes annotated as a Eureka client
+and at both add eureka to the yml
+after starting both services visit
+http://127.0.0.1:8761/
+you will find both are showing up
 
 
 
