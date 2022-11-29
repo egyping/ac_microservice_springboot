@@ -10,8 +10,9 @@ import org.springframework.web.client.RestTemplate;
 public class CustomerConfig {
 
     @Bean
-    //@LoadBalanced
+    @LoadBalanced
     public RestTemplate restTemplate() {
+
         return new RestTemplate();
     }
 }

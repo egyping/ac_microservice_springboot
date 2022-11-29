@@ -69,6 +69,8 @@ and at both add eureka to the yml
 after starting both services visit
 http://127.0.0.1:8761/
 you will find both are showing up
+now at any URL call from any service you just need to mention the service name instead of the ip and port
+@LoadBalanced must be exist at the bean or the code which call the RestTemplate class
 
 
 
