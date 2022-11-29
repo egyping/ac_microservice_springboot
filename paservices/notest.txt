@@ -71,6 +71,53 @@ http://127.0.0.1:8761/
 you will find both are showing up
 now at any URL call from any service you just need to mention the service name instead of the ip and port
 @LoadBalanced must be exist at the bean or the code which call the RestTemplate class
+===================
+
+
+
+
+
+
+== OpenFeign ==
+---------------
+Create new module called clients this will host all the web clients
+At the main pom
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+cmd + p it helps in getting the class method
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

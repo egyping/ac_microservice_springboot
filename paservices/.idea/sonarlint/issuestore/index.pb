@@ -35,6 +35,12 @@ u
 Ecustomer/src/main/java/com/pythonarabia/customer/CustomerService.java,1/0/10443c2967ba5acf3c9e3eb1e05c041349ad239c
 x
 Hcustomer/src/main/java/com/pythonarabia/customer/FraudCheckResponse.java,5/a/5a05830f002f02c6c4c2d83673950bce5406de72
+B
+webclients/pom.xml,d/9/d9279f9e16929e020eece0d8f86445c438fed8a0
+7
+pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
+g
+7webclients/src/main/java/clients/fraud/FraudClient.java,c/f/cf0d15eec97f30e46540917573d278cbaa0fe741
 :
 
 notest.txt,0/c/0ce7704d6f2392a32cedb3a33b334606b40f199d
