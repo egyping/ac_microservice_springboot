@@ -87,6 +87,21 @@ At the main pom
   <artifactId>spring-cloud-starter-openfeign</artifactId>
 </dependency>
 cmd + p it helps in getting the class method
+Create middle module to act like web clients for other modules\services
+the middle module will work as a center web clients connect to everywhere so if you want API connection to anywhere
+call it from that module
+the module has @FeignClient annotation and connect to whatever URL
+now you need to make other services use this web interface to grap data from other modules
+add the dependancy at each module will use the middle web client
+<dependency>
+    <groupId>com.pythonarabia</groupId>
+    <artifactId>webclient</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <scope>compile</scope>
+</dependency>
+At each module will use the middle web client we have to add
+@EnableFeignClients(basePackages = "com.pythonarabia.fraud")
+then at each module service will use the web client we start call it in this way
 
 
 

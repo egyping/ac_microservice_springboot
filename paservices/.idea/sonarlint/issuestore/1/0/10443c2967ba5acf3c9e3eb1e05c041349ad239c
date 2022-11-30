@@ -1,9 +1,4 @@
 
-L
-java:S5411"*Use the primitive boolean expression here.(ÈÇÏßþÿÿÿÿ8Ó‘—îË0
-k
-java:S2259"PA "NullPointerException" could be thrown; "fraudCheckResponse" is nullable here.(ÈÇÏßþÿÿÿÿ
 E
-java:S5411"*Use the primitive boolean expression here.(ÈÇÏßþÿÿÿÿ
-k
-java:S2259"PA "NullPointerException" could be thrown; "fraudCheckResponse" is nullable here.(ÈÇÏßþÿÿÿÿ
+java:S5411/"*Use the primitive boolean expression here.(ÈÇÏßþÿÿÿÿ
+Q	java:S125$"<This block of commented-out lines of code should be removed.(øýÐÛ
