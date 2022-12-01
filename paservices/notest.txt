@@ -103,6 +103,17 @@ At each module will use the middle web client we have to add
 @EnableFeignClients(basePackages = "com.pythonarabia.fraud")
 then at each module service will use the web client we start call it in this way
 
+So in brief
+post map to customer
+customer controlled point to customer service
+the customer service call the feign client and pass the customer id to it
+the feign client annotated as a feign client and value is fraud , fraud is registered at eureka load balancer
+feign client has get method to the fraud service url
+api/v1/fraud-check/{customerId}
+the url hit the fraud service get method
+it parse the customer id pass it to the service which pass it to the repository to save the check
+and it respond to the feign client with boolean value of isfraudstercustomer then it moved vice versa
+>> service calls FeignClient >> FC query eureka >> FC hit the destined service
 
 
 
