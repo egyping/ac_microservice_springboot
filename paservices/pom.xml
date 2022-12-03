@@ -13,6 +13,9 @@
       <module>fraud</module>
     <module>eureka-server</module>
     <module>webclient</module>
+    <module>notifications</module>
+
+
   </modules>
 
   <name>paservices</name>

@@ -10,11 +10,13 @@
         <module name="webclient" />
         <module name="eureka-server" />
         <module name="fraud" />
+        <module name="notifications" />
         <module name="customer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="clients" target="17" />
+      <module name="notification" target="17" />
       <module name="webclients" target="17" />
     </bytecodeTargetLevel>
   </component>

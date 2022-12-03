@@ -47,5 +47,7 @@ public class CustomerService {
         if (fraudCheckResponse.isFraudster()) {
             throw new IllegalStateException("fraudster");
         }
+
+        // Notification
     }
 }

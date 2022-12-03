@@ -114,6 +114,46 @@ the url hit the fraud service get method
 it parse the customer id pass it to the service which pass it to the repository to save the check
 and it respond to the feign client with boolean value of isfraudstercustomer then it moved vice versa
 >> service calls FeignClient >> FC query eureka >> FC hit the destined service
+-------------------
+
+
+
+== Notification Service ==
+Setup
+create
+    Notification application
+    Notification class
+    Notification Repository interface
+Add spring, JPA, postgres and webclient dependancies
+application.yml configuration
+start the app to create the table
+add the eureka configuration at the pom and application yml
+start eureka server
+start notifications application again to register
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
