@@ -3,6 +3,9 @@ spring:
     name: eureka-server
 server:
   port: 8761
+
+  zipkin:
+    base-url: http://127.0.0.1:9411
 eureka:
   client:
     fetch-registry: false

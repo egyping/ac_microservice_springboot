@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface FraudClient {
 
     @GetMapping(path = "api/v1/fraud-check/{customerId}")
+    // method to response via boolean field
     FraudCheckResponse isFraudster(
             @PathVariable("customerId") Integer customerId);
 

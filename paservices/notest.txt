@@ -106,7 +106,7 @@ then at each module service will use the web client we start call it in this way
 So in brief
 post map to customer
 customer controlled point to customer service
-the customer service call the feign client and pass the customer id to it
+the customer service call the fraud feign client and pass the customer id to it
 the feign client annotated as a feign client and value is fraud , fraud is registered at eureka load balancer
 feign client has get method to the fraud service url
 api/v1/fraud-check/{customerId}
@@ -124,12 +124,96 @@ create
     Notification application
     Notification class
     Notification Repository interface
-Add spring, JPA, postgres and webclient dependancies
+Add spring, JPA, postgres and webclient dependencies
 application.yml configuration
 start the app to create the table
 add the eureka configuration at the pom and application yml
 start eureka server
 start notifications application again to register
+at the webclient app you will need to add the notifications\request and client
+You need to add full notifications module too model application controller
+The flow
+create customer > notification client > URL open feign to notification module > save DB
+notification client > void response
+
+
+
+
+== Spring sleuth ==
+Tracing the microservices
+setup
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-sleuth</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+</dependency>
+@application.yml
+  zipkin:
+    base-url: http://127.0.0.1:9411
+
+add it to all the applications-modules
+now for every call there will be id
+zipkin is a tool to graph the IDs
+setup
+docker-compose.yml
+add the followings
+zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+docker-compose up -d
+start all the service
+
+
+
+== Spring cloud gateway ==
+its all about API gateway and load balancer
+create new module apigw
+add dependencies
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-sleuth</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-gateway</artifactId>
+</dependency>
+adjust application.yml for spring zipkin and eureka
+adjust banner.txt
+add application to the package
+> configure the api gateway to route the request to the service:
+application.yml > spring section add
+      cloud:
+        gateway:
+          routes:
+            - id: customer
+              uri: lb://CUSTOMER
+              predicates:
+                - Path=/api/v1/customers/**
+> start the application and other applications
+127.0.0.1:8083/api/v1/customers    (8083 the port of the gateway)
+This will be routed to the customer from the load balancer
+
+
+
+
+
+
+
+
+
 
 
 

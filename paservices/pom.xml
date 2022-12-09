@@ -14,6 +14,7 @@
     <module>eureka-server</module>
     <module>webclient</module>
     <module>notifications</module>
+      <module>apigw</module>
 
 
   </modules>

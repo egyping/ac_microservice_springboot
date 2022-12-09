@@ -2,7 +2,10 @@ package com.pythonarabia.customer;
 
 import com.pythonarabia.fraud.FraudCheckResponse;
 import com.pythonarabia.fraud.FraudClient;
+import com.pythonarabia.notifications.NotificationsClient;
+import com.pythonarabia.notifications.NotificationRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,6 +18,9 @@ public class CustomerService {
 
     // adding the fraud web client
     private final FraudClient fraudClient;
+
+    // Notifications client
+    private final NotificationsClient notificationsClient;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -48,6 +54,22 @@ public class CustomerService {
             throw new IllegalStateException("fraudster");
         }
 
-        // Notification
+        // send notification
+        NotificationRequest notificationRequest = new NotificationRequest(
+                customer.getId(),
+                customer.getEmail(),
+                String.format("Hi %s, welcome to Amigoscode...",
+                        customer.getFirstName())
+        );
+
+        notificationsClient.sendNotification(
+                new NotificationRequest(
+                        customer.getId(),
+                        customer.getEmail(),
+                        String.format("Hey! .. ", customer.getFirstName())
+                )
+        );
+
+
     }
 }

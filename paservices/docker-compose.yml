@@ -1,4 +1,5 @@
 services:
+  # Run postgre DB
   postgres:
     container_name: postgres
     image: postgres
@@ -14,6 +15,7 @@ services:
       - postgres
     restart: unless-stopped
 
+  # Run pgadmin instance
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
@@ -29,6 +31,14 @@ services:
       - postgres
     restart: unless-stopped
 
+  # start zipkin instance
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    ports:
+      - "9411:9411"
+      -
+# to bridge network to postgres
 networks:
   postgres:
     driver: bridge
