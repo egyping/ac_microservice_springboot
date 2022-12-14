@@ -1,4 +1,19 @@
 
 E
-java:S5411/"*Use the primitive boolean expression here.(ÈÇÏßþÿÿÿÿ
-Q	java:S125$"<This block of commented-out lines of code should be removed.(øýÐÛ
+java:S54115"*Use the primitive boolean expression here.(ÈÇÏßþÿÿÿÿ
+d
+java:S1854:"GRemove this useless assignment to local variable "notificationRequest".(¥ùß©8Ý‡²×Ï0
+Q	java:S125*"<This block of commented-out lines of code should be removed.(øýÐÛ
+U
+java:S1481:"8Remove this unused "notificationRequest" local variable.(¥ùß©8äˆ²×Ï0
+B
+java:S3457E"%String contains no format specifiers.(ôÒ œ8íˆ²×Ï0
+E
+java:S54115"*Use the primitive boolean expression here.(ÈÇÏßþÿÿÿÿ
+d
+java:S1854:"GRemove this useless assignment to local variable "notificationRequest".(¥ùß©8ý‘²×Ï0
+Q	java:S125*"<This block of commented-out lines of code should be removed.(øýÐÛ
+U
+java:S1481:"8Remove this unused "notificationRequest" local variable.(¥ùß©8ž’²×Ï0
+B
+java:S3457E"%String contains no format specifiers.(ôÒ œ8¡’²×Ï0
