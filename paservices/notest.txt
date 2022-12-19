@@ -6,7 +6,7 @@ adjusted the pom file > clean > validate
 
 == Postgres from Docker and connecting the microservice to ==
 create docker-compose.yml file and from the same path run the command
->> docker compose up -d
+>> docker-compose up -d
 This will create pgadmin and postgres instance
 docker compose ps
 will show the instances status
@@ -209,10 +209,88 @@ This will be routed to the customer from the load balancer
 
 
 == Messaging ==
+Rabbit MQ
+
+to start RMQ in a container add the followings to the yml at the services section
+rabbitmq:
+    image: rabbitmq:3.9.11-management-alpine
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+docker-compose up -d
+http://127.0.0.1:15672/
+guest
+guest
+
+amqp module
+create new module name it amqp
+<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-amqp</artifactId>
+</dependency>
+> create amqp package
+create RabbitMQConfig class >> works as a medium producer which will receive the data convert it
+to json and send it to the listner
+create beans amqpTemplate and jacksonConverter
+jacksonConverter to convert the message to JSON
+amqpTemplate to make the MQ template
+create listner simpleRabbitListenerContainerFactory
+
+>> so the customer service will send the notification to the MQ EXCHANGE and Q then notificaiton
+consume it
+
+>> at the Notification service
+add the dependancies
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-amqp</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.pythonarabia</groupId>
+    <artifactId>amqp</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
+application.yml << in this configuration you are pointing the service to the exchange and q >>
+  rabbitmq:
+    addresses: 127.0.0.1:5672
+rabbitmq:
+    exchanges:
+        internal: internal.exchange
+    queues:
+        notification: notification.queue
+    routing-keys:
+        internal-notification: internal.notification.routing-key
+
+>Create NotificationsConfig class and in this class you basically use the configuration
+at the application.yml and create from them actual Bean to be used as a exchange and q
+now the notifications service knows from where it will listen and consume the messages
+
+> create producer
+class to produce the message
+at the amqp package create class RabbitMQMessageProducer
+producer is a class to use it anywhere in your program to publish the message
+when you use the produce you need to provide the payload , exchange and routingkey
 
 
 
 
+>> at the customer service
+add the dependancies
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-amqp</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.pythonarabia</groupId>
+    <artifactId>amqp</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
+> send message from csutomer to RabbitMQ then consume it at notfications
+application.yml
+  rabbitmq:
+    addresses: 127.0.0.1:5672
+at the customer application add the basePackages amqp and customer
 
 
 

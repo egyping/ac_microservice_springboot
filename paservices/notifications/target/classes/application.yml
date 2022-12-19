@@ -17,9 +17,18 @@ spring:
     show-sql: true
   zipkin:
     base-url: http://127.0.0.1:9411
+  rabbitmq:
+    addresses: 127.0.0.1:5672
 eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka
     fetch-registry: true
     register-with-eureka: true
+rabbitmq:
+  exchanges:
+    internal: internal.exchange
+  queues:
+    notification: notification.queue
+  routing-keys:
+    internal-notification: internal.notification.routing-key

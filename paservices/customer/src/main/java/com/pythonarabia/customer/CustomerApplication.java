@@ -5,10 +5,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@SpringBootApplication
+@SpringBootApplication(
+        scanBasePackages = {
+                "com.pythonarabia.amqp",
+                "com.pythonarabia.customer",
+        }
+)
 @EnableEurekaClient
 @EnableFeignClients(
-        basePackages = {"com.pythonarabia.fraud","com.pythonarabia.notifications"})
+        basePackages = {"com.pythonarabia.fraud",
+                "com.pythonarabia.notifications",
+                })
 
 public class CustomerApplication {
 

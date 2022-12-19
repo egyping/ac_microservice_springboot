@@ -15,6 +15,7 @@
     <module>webclient</module>
     <module>notifications</module>
       <module>apigw</module>
+      <module>amqp</module>
 
 
   </modules>

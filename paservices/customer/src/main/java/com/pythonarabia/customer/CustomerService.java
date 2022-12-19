@@ -1,5 +1,6 @@
 package com.pythonarabia.customer;
 
+import com.pythonarabia.amqp.RabbitMQMessageProducer;
 import com.pythonarabia.fraud.FraudCheckResponse;
 import com.pythonarabia.fraud.FraudClient;
 import com.pythonarabia.notifications.NotificationsClient;
@@ -14,13 +15,16 @@ import org.springframework.web.client.RestTemplate;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
-    private final RestTemplate restTemplate;
+    //private final RestTemplate restTemplate;
 
     // adding the fraud web client
     private final FraudClient fraudClient;
 
     // Notifications client
-    private final NotificationsClient notificationsClient;
+    //private final NotificationsClient notificationsClient;
+
+    // get the Rabbit producer
+    private final RabbitMQMessageProducer rabbitMQMessageProducer;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -55,21 +59,33 @@ public class CustomerService {
         }
 
         // send notification
-        NotificationRequest notificationRequest = new NotificationRequest(
-                customer.getId(),
-                customer.getEmail(),
-                String.format("Hi %s, welcome to Amigoscode...",
-                        customer.getFirstName())
-        );
+//            NotificationRequest notificationRequest = new NotificationRequest(
+//                    customer.getId(),
+//                    customer.getEmail(),
+//                    String.format("Hi %s, welcome to Amigoscode...",
+//                            customer.getFirstName())
+//            );
 
-        notificationsClient.sendNotification(
-                new NotificationRequest(
+        // send to the notfication client
+//            notificationsClient.sendNotification(
+//                    new NotificationRequest(
+//                            customer.getId(),
+//                            customer.getEmail(),
+//                            String.format("Hey! .. ", customer.getFirstName())
+//                    )
+//            );
+
+        // send to Rabbit MQ
+        NotificationRequest notificationRequest = new NotificationRequest(
                         customer.getId(),
                         customer.getEmail(),
                         String.format("Hey! .. ", customer.getFirstName())
-                )
-        );
+                );
 
+        rabbitMQMessageProducer.publish(
+                notificationRequest,
+                "internal.exchange",
+                "internal.notification.routing-key");
 
     }
 }
